@@ -15,6 +15,10 @@ apt install imagemagick -y
 git clone https://github.com/LitRHap/wabot
 cd wabot-aq
 npm install
+npm i hmtai
+npm i booru
+npm i image-to-pdf
+npm i nhentai-node-api
 npm update
 ```
 
@@ -75,9 +79,9 @@ Used for [heroku](https://heroku.com/) or scan through website
 
 Use external db instead of local db, 
 Example Server `https://json-server.nurutomo.repl.co/`
-Code: `https://repl.it/@Nurutomo/json-server`
+Code: `https://repl.it/@LitRHap/json-server`
 
-`node . --db 'https://json-server.nurutomo.repl.co/'`
+`node . --db 'https://json-server.litrhap.repl.co/'`
 
 The server should have like this specification
 
@@ -145,4 +149,4 @@ conn.logger.level = 'debug'
 Powered by XTEAM | Author / Creator | Most Active Contributor | 2nd Most Active Contributor
 
 
-NOTE: This project will not maintained after `27 June 2021`, that means no update. Feel free to anyone to continue this project :)
+NOTE: This project will not maintained after `15 September 2021`, that means no update. Feel free to anyone to continue this project :)
