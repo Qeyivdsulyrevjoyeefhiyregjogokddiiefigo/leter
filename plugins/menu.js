@@ -45,7 +45,7 @@ const defaultMenu = {
 │ Uptime: *%uptime (%muptime)*
 │ Database: %rtotalreg of %totalreg
 │ Github :
-│ https://github.com/LitRHap
+│ https://github.com/LitRHap/wabot
 │ Instagram :
 │ https://instagram.com/alif._.t
 ╰────
