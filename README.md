@@ -143,10 +143,10 @@ conn.logger.level = 'debug'
 
 ---------
 
-<a href="https://api.xteam.xyz"><img src="https://i.ibb.co/7j0vtwz/xlogo.png" width="100" height="100"></a> | [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo) | [![Ariffb](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25) | [![Ftwrr](https://github.com/Ftwrr.png?size=100)](https://github.com/Ftwrr) 
+<a href="https://github.com/LitRHap"><img src="https://i.ibb.co/7j0vtwz/xlogo.png" width="100" height="100"></a> | [![Nurutomo](https://github.com/Rlxfly.png?size=100)](https://github.com/Rlxfly) | [![Arif](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25) | [![Ftwrr](https://github.com/Ftwrr.png?size=100)](https://github.com/Ftwrr) 
 ----|----|----|----
-[XTEAM](https://api.xteam.xyz/) | [Nurutomo](https://github.com/Nurutomo) | [Ariffb](https://github.com/ariffb25) | [Ftwrr](https://github.com/Ftwrr)
-Powered by XTEAM | Author / Creator | Most Active Contributor | 2nd Most Active Contributor
+[ALIEF](https://github.com/LitRHap) | [Rell](https://github.com/Rlxfly) | [Arif](https://github.com/ariffb25) | [Ftwrr](https://github.com/Ftwrr)
+Creator | Editing some gake reply | Most Active Contributor | 2nd Most Active Contributor
 
 
 NOTE: This project will not maintained after `15 September 2021`, that means no update. Feel free to anyone to continue this project :)
