@@ -1,6 +1,6 @@
 let fs = require('fs')
-let axios = require('axios')
 let request = require('request')
+let fetch = require('node-fetch')
 let topdf = require('image-to-pdf')
 let nhentai = require('nhentai-node-api')
 
@@ -15,10 +15,18 @@ let handler = async (m, { conn, args }) => {
 		let count = 0
 		let ResultPdf = []
 		let doujin = await nhentai.getDoujin(input)
+		let title = doujin.title.default
+		let details = doujin.details
+		let parodies = details.parodies.map(v => v.name)
+		let characters = details.characters.map(v => v.name)
+		let tags = details.tags.map(v => v.name)
+		let artists = details.artists.map(v => v.name)
+		let groups = details.groups.map(v => v.name)
+		let categories = details.categories.map(v => v.name)
 		let array_page = doujin.pages
-		let title = doujin.title.pretty
 
 		for (let index = 0; index < array_page.length; index++) {
+			if (!fs.existsSync('./nhentai')) fs.mkdirSync('./nhentai')
 			let image_name = './nhentai/' + title + index + '.jpg'
 			await new Promise((resolve) => request(array_page[index]).pipe(fs.createWriteStream(image_name)).on('finish', resolve))
 			console.log(array_page[index])
@@ -32,15 +40,16 @@ let handler = async (m, { conn, args }) => {
 			.on('finish', resolve)
 		)
 
-		let size = await fs.statSync(`./nhentai/${title}.pdf`).size
+		for (let index = 0; index < array_page.length; index++) {
+			fs.unlink('./nhentai/' + title + index + '.jpg')
+		}
+		
+		let size = await fs.statSync(`./nhentai/${title}.pdf`).siz
 		if (size < 45000000) {
 			m.reply('Uploading...')
-			await conn.sendFile(m.chat, fs.readFileSync(`./nhentai/${title}.pdf`), `${title}.pdf`, '', m, false, { asDocument: true, thumbnail: fs.readFileSync(`./nhentai/${title}0.jpg`) })
-				.then((result) => {
-					fs.unlink(`./nhentai/${title}.pdf`, (err) => {
-						if (err) throw err
-					})
-				})
+			let thumbnail = await (await fetch(doujin.cover)).buffer()
+			await conn.sendFile(m.chat, fs.readFileSync(`./nhentai/${title}.pdf`), `${title}.pdf`, '', m, false, { asDocument: true, thumbnail: thumbnail })
+			.then(() => fs.unlinkSync(`./nhentai/${title}.pdf`))
 		} else {
 			m.reply('Uploading to anonfiles because file size to large')
 			let options = {
@@ -50,18 +59,10 @@ let handler = async (m, { conn, args }) => {
 					file: fs.createReadStream(`./nhentai/${title}.pdf`),
 				},
 			}
-
-			for (let index = 0; index < array_page.length; index++) {
-				fs.unlink('./nhentai/' + title + index + '.jpg', (err) => {
-					if (err) throw err
-				})
-			}
 			
 			request(options, function(err, res, body) {
-				if (err) console.log(err)
-				fs.unlink(`./nhentai/${title}.pdf`, (err) => {
-					if (err) throw err
-				})
+				if (err) throw err
+				fs.unlinkSync(`./nhentai/${title}.pdf`)
 				m.reply('Link download to file: ' + JSON.parse(body).data.file.url.full)
 			})
 		}
