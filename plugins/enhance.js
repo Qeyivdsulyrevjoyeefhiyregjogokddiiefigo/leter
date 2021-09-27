@@ -1,20 +1,19 @@
-const fetch = require('node-fetch')
-const FormData = require('form-data')
+const fs = require('fs')
+const deepai = require('deepai')
+deepai.setApiKey('31c3da72-e27e-474c-b2f4-a1b685722611')
 
 let handler = async (m) => {
-  let q = m.quoted ? m.quoted : m
-  let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'Tidak ada foto'
-  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak support`
-  let img = await q.download()
-  let body = new FormData
-  body.append('image', img, 'image')
-  let res = await fetch('http://max-image-resolution-enhancer.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud/model/predict', {
-    method: 'POST',
-    body
-  })
-  if (res.status !== 200) throw await res.json()
-  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', 'Nih, hd kan?', m)
+	let q = m.quoted ? m.quoted : m
+	let mime = (q.msg || q).mimetype || ''
+	if (!mime) throw 'Tidak ada foto'
+	if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak support`
+	let img = mime.split('/')[1]
+	img = Date.now() + '.' + img
+	fs.writeFileSync(`./${img}`, await q.download())
+	let resp = await deepai.callStandardApi('waifu2x', {
+		image: fs.readFileSync(`./${img}`)
+	})
+	await conn.sendFile(m.chat, resp.output_url, 'hd.jpg', 'Nih, hd kan?', m).then(() => fs.unlinkSync(`./${img}`))
 }
 handler.help = ['hd (caption|reply media)', 'enhance (caption|reply media)']
 handler.tags = ['tools']
