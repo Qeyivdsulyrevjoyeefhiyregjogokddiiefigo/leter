@@ -44,7 +44,7 @@ let handler = async (m, { conn, args }) => {
 			fs.unlink('./nhentai/' + title + index + '.jpg')
 		}
 		
-		let size = await fs.statSync(`./nhentai/${title}.pdf`).siz
+		let size = await fs.statSync(`./nhentai/${title}.pdf`).size
 		if (size < 45000000) {
 			m.reply('Uploading...')
 			let thumbnail = await (await fetch(doujin.cover)).buffer()
