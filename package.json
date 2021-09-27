@@ -19,26 +19,27 @@
     "whatsapp",
     "js-whatsapp"
   ],
-  "homepage": "https://github.com/Nurutomo/wabot-aq",
+  "homepage": "https://github.com/LitRHap/wabot",
   "author": {
-    "name": "Nurutomo"
+    "name": "LitRHap"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nurutomo/wabot-aq.git"
+    "url": "git+https://github.com/LitRHap/wabot.git"
   },
   "bugs": {
-    "url": "https://github.com/Nurutomo/wabot-aq/issues"
+    "url": "https://github.com/LitRHap/wabot/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@adiwajshing/baileys": "github:adiwajshing/baileys",
+    "@adiwajshing/baileys": "^3.5.2",
     "awesome-phonenumber": "^2.54.0",
     "booru": "^2.4.2",
     "brainly-scraper-v2": "^2.0.4-1",
     "cfonts": "^2.9.3",
     "chalk": "^4.1.1",
     "cheerio": "^1.0.0-rc.5",
+    "deepai": "^1.0.17",
     "express": "^4.17.1",
     "file-type": "^16.5.2",
     "form-data": "^4.0.0",
