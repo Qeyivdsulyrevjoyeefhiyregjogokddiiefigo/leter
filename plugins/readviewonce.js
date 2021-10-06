@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text }) => {
-    if (!m.quoted) return conn.sendMessage(m.chat, 'where\'s message?', 'conversation')
-    if (m.quoted.m.mtype !== 'viewOnceMessage') return conn.sendMessage(m.chat, 'Reply chat viewOnce')
-    conn.copyNForward(m.chat, await conn.loadMessage(m.chat, m.quoted.id), true, { readViewOnce: true, quoted: m }).catch(console.log)
+    if (!m.quoted) throw 'Penggunaan reply viewOnce message'
+    if (m.quoted.m.mtype !== 'viewOnceMessage') throw 'Reply chat viewOnce'
+    conn.copyNForward(m.chat, await conn.loadMessage(m.chat, m.quoted.id), true, { readViewOnce: true }).catch(console.log)
 }
 
 handler.help = ['readviewonce']
