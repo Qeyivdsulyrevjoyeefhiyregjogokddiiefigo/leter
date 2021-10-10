@@ -154,7 +154,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    conn.reply(m.chat, text.trim(), m)
+    //Sy keren
+conn.sendMessage(m.chat, text.trim() , 'conversation', {quoted: m, thumbnail: global.thumb, contextInfo:{externalAdReply: {title: 'Just simple WhatsApp Bot', body: `© ${conn.user.name}, sourceUrl: '', thumbnail: global.thumb2}}})
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
