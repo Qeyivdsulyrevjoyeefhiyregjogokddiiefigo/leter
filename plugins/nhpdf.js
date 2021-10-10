@@ -39,7 +39,7 @@ let handler = async (m, { conn, args }) => {
 	)
 
 	for (let i = 0; i < array_page.length; i++) {
-		fs.unlink('./nhentai/' + title + i + '.jpg')
+		fs.unlinkSync('./nhentai/' + title + i + '.jpg')
 	}
 	
 	let size = await fs.statSync(`./nhentai/${title}.pdf`).size
