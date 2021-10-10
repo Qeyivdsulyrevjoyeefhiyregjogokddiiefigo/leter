@@ -1,6 +1,6 @@
 let fs = require('fs')
-let tum = fs.readFileSync('./src/emror.jpeg')
-let tum2 = fs.readFileSync('./src/Ah5.jpeg')
+let tum = fs.readFileSync('../src/emror.jpeg')
+let tum2 = fs.readFileSync('../src/Ah5.jpeg')
 let path = require('path')
 let levelling = require('../lib/levelling')
 let tags = {
@@ -157,7 +157,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     //Merasa keren
-conn.sendMessage(m.chat, text.trim() , 'conversation', {quoted: m, thumbnail: thum, contextInfo:{externalAdReply: {title: 'Just simple WhatsApp Bot', body: `© ${conn.user.name}`, sourceUrl: '', thumbnail: tum2}}})
+conn.sendMessage(m.chat, text.trim() , 'conversation', { quoted: m, thumbnail: tum, contextInfo: { externalAdReply: { title: 'Just simple WhatsApp Bot', body: `© ${conn.user.name}`, sourceUrl: package.homepage, thumbnail: tum2 }}})
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
