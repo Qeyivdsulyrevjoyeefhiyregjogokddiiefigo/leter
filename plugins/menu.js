@@ -49,9 +49,7 @@ const defaultMenu = {
 │ Database: %rtotalreg of %totalreg
 │ Github :
 │ https://github.com/LitRHap/wabot
-│ https://github.com/Johannes2803/wabot
 │ Instagram :
-│ https://instagram.com/johannes28_
 │ https://instagram.com/alif._.t
 ╰────
 %readmore`.trimStart(),
