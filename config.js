@@ -1,7 +1,7 @@
 let fs = require('fs')
 let tum = fs.readFileSync('./src/Ah5.jpeg')
 let tum2 = fs.readFileSync('./src/emror.jpeg')
-global.owner = ['6289681378568', '6283820073017', '6283801499848','48699530299','62813828362494','85290882526','6285240750713','6282125986924','6288286421519'] // Put your number here
+global.owner = ['6289681378568', '6283820073017', '6283801499848','62813828362494','85290882526','6285240750713','6282125986924','6288286421519'] // Put your number here
 global.mods = ['6285693120588'] // Want some help?
 global.prems = ['6287842147162','6285893120588','6285656615441'] // Premium user has unlimited limit
 global.APIs = { // API Prefix
