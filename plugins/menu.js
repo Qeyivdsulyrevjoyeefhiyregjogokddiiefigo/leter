@@ -1,7 +1,8 @@
 let fs = require('fs')
-let tum = fs.readFileSync('../src/emror.jpeg')
-let tum2 = fs.readFileSync('../src/Ah5.jpeg')
+let tum = fs.readFileSync('./Images2.jpeg')
+let tum2 = fs.readFileSync('./Images1.jpeg')
 let path = require('path')
+let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
 let tags = {
   'main': 'Main',
@@ -48,7 +49,9 @@ const defaultMenu = {
 │ Database: %rtotalreg of %totalreg
 │ Github :
 │ https://github.com/LitRHap/wabot
+│ https://github.com/Johannes2803/wabot
 │ Instagram :
+│ https://instagram.com/johannes28_
 │ https://instagram.com/alif._.t
 ╰────
 %readmore`.trimStart(),
@@ -62,6 +65,8 @@ ${'```%npmdesc```'}
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
+    // Image Ini tidak work jika User bot nya tidak memakai pp
+    let pp = await conn.getProfilePicture(conn.user.jid)
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
     let { exp, limit, level, role } = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
@@ -156,8 +161,9 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    //Merasa keren
-conn.sendMessage(m.chat, text.trim() , 'conversation', { quoted: m, thumbnail: tum, contextInfo: { externalAdReply: { title: 'Just simple WhatsApp Bot', body: `© ${conn.user.name}`, sourceUrl: package.homepage, thumbnail: tum2 }}})
+    
+ await conn.send3ButtonLoc(m.chat, await (await fetch(pp)).buffer(), text.trim(), `Wabot`, 'INFO BOT', '.speed', 'OWNER', '.owner', 'DONASI', '#DONASI', m)
+ 
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
