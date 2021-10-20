@@ -1,11 +1,9 @@
 let syntaxerror = require('syntax-error')
 let util = require('util')
-//Just trying UwU
 let handler  = async (m, _2) => {
    let { conn, usedPrefix, command, text, noPrefix, args, groupMetadata } = _2
 let fs = require('fs')
 let fetch = require('node-fetch')
-let clock = jam.toLocaleTimeString('us')
 let peli = await (await fetch('https://i.ibb.co/d4SGQqB/elaina.jpg')).buffer()
 let ye = await (await fetch('https://i.ibb.co/d4SGQqB/elaina.jpg')).buffer()
   let _return
@@ -44,6 +42,7 @@ conn.relayWAMessage(prep)
     m.exp = old
   }
 }
+//Merasa keren
 handler.help = ['> ', '=> ']
 handler.tags = ['advanced']
 handler.customPrefix = /^=?> /
