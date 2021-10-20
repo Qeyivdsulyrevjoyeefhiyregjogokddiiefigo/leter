@@ -29,7 +29,7 @@ global.APIKeys = { // APIKey Here
 global.packname = 'I hope you\'re fine'
 global.author = 'LitRHap'
 //Thumbnail
-global.thumb = await (await fetch('https://i.ibb.co/34PV5yH/By-Relldev.jpg')).buffer()//trying something :v
+global.thumb = await (await fetch('https://i.ibb.co/34PV5yH/By-Relldev.jpg')).buffer()
 global.thumb2 = tum2
 global.multiplier = 69 // The higher, The harder levelup
 
