@@ -1,3 +1,4 @@
+//trying UwU
 let syntaxerror = require('syntax-error')
 let util = require('util')
 let handler  = async (m, _2) => {
@@ -42,7 +43,6 @@ conn.relayWAMessage(prep)
     m.exp = old
   }
 }
-//Merasa keren
 handler.help = ['> ', '=> ']
 handler.tags = ['advanced']
 handler.customPrefix = /^=?> /
