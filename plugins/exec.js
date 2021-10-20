@@ -1,6 +1,6 @@
 let syntaxerror = require('syntax-error')
 let util = require('util')
-let fs = require('fs')
+
 let handler  = async (m, _2) => {
   let { conn, usedPrefix, command, text, noPrefix, args, groupMetadata } = _2
   let _return
@@ -26,25 +26,15 @@ let handler  = async (m, _2) => {
     if (err) _syntax = '```' + err + '```\n\n'
     _return = e
   } finally {
-    const peli = fs.readFileSync('./ah1.jpeg')
-conn.sendMessage(m.chat, _syntax + util.format , 'conversation', {quoted: m, thumbnail:fs.readFileSync('./emror.jpeg'), contextInfo:{externalAdReply: {title: 'Just trying', body: `© ${conn.user.name}`, sourceUrl: '', thumbnail: peli}}})
+    m.reply(_syntax + util.format(_return))
     m.exp = old
   }
 }
-handler.help = ['> ', '=> ']
-handler.tags = ['advanced']
+
 handler.customPrefix = /^=?> /
-handler.command = /(?:)/i
+handler.command = new RegExp
 handler.rowner = true
 handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
 handler.fail = null
 
 module.exports = handler
@@ -55,4 +45,3 @@ class CustomArray extends Array {
     else return super(...args)
   }
 }
-//Alip pedo
