@@ -1,8 +1,10 @@
+//follow gh sy dong
 let cp = require('child_process')
 let { promisify } = require('util')
 let fs = require('fs')
 let { MessageType } = require('@adiwajshing/baileys')
 let { performance } = require('perf_hooks')
+let exec = promisify(cp.exec).bind(cp)
 let handler = async (m, { conn, isOwner, command, text }) => {
   if (global.conn.user.jid != conn.user.jid) return /*conn.reply(m.chat, util.format(...args), m)*/
   let fetch = require('node-fetch')
@@ -24,4 +26,3 @@ handler.customPrefix = /^[$] /
 handler.command = new RegExp
 handler.rowner = true
 module.exports = handler
-//UwU
