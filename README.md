@@ -20,6 +20,7 @@ npm i booru
 npm i image-to-pdf
 npm i nhentai-node-api
 npm i acrcloud
+npm i sagiri
 npm update
 ```
 
