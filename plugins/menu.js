@@ -50,7 +50,7 @@ const defaultMenu = {
 │ Github :
 │ https://github.com/LitRHap/wabot
 │ Instagram :
-│ https://instagram.com/alif._.t
+│ https://instagram.com/loli._.school
 ╰────
 %readmore`.trimStart(),
   header: '╭─「 %category 」',
