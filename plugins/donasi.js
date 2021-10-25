@@ -1,6 +1,6 @@
 let handler = async m => m.reply(`
 ╭─「 Donasi • Pulsa 」
-│ • Indosat Ooredoo [085763791392]
+│ • Indosat Ooredoo [085763791492]
 │ • Telkomsel [082125985924]
 ╰────
 
