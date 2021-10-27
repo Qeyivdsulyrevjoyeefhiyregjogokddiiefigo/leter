@@ -159,8 +159,29 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    
- await conn.send3ButtonLoc(m.chat, await (await fetch(pp)).buffer(), text.trim(), `Wabot`, 'INFO BOT', '.speed', 'OWNER', '.owner', 'DONASI', '#DONASI', m)
+    //Iya bang sy nub
+ const {
+    MessageType,
+    Mimetype
+} = require("@adiwajshing/baileys");
+ const reply = {
+	key : {
+                          participant : '0@s.whatsapp.net'
+                        },
+       message: {
+                    orderMessage: {
+                            itemCount : 404,
+                            itemCoun : 404,
+                            surface : 404,
+                            message: `Im ${conn.user.name}` ,
+                            orderTitle: 'B',
+                            thumbnail: require('fs').readFileSync('./src/thumb.jpeg'), 
+                            sellerJid: '0@s.whatsapp.net'
+          
+                          }
+                        }
+                      }
+conn.send3ButtonImg(m.chat, require('fs'). readFileSync('./src/thumb.jpeg'), text.trim(), '© wabot \nA simple WhatsApp Bot', 'ping', '.ping', 'owner', '.owner', 'donasi', '.donate', reply)
  
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
