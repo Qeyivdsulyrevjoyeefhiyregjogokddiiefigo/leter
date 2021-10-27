@@ -5,7 +5,8 @@ let handler = async m => {
 	let mime = (q.msg || q).mimetype || ''
 	if (/image/.test(mime)) {
 		let img = await q.download()
-		 await conn.downloadAndSaveMediaMessage({ message: m.message.extendedTextMessage.contextInfo.quotedMessage }, './src/thumb')
+		 await conn.downloadAndSaveMediaMessage({ message: m.message.extendedTextMessage.contextInfo.null }, './src/thumb')
+m.reply('done')
 	} else throw 'Reply imagenya'
 }
 
