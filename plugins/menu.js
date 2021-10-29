@@ -170,7 +170,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                         },
        message: {
                     orderMessage: {
-                            itemCount : 404,
+                            itemCount : 1122334455,
                             itemCoun : 404,
                             surface : 404,
                             message: `Im ${conn.user.name}` ,
@@ -183,9 +183,9 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                       }
 
 let rell = await conn.getProfilePicture('6283820073017@s.whatsapp.net')
-Rell_ = await (await fetch(rell)).buffer()
+gw = await (await fetch(rell)).buffer()
 const thumb = fs.readFileSync('./src/thumb.jpeg')
-let msg = await conn.prepareMessage("0@s.whatsapp.net", rell, "imageMessage", {thumbnail: thumb})
+let msg = await conn.prepareMessage("0@s.whatsapp.net", gw, "imageMessage", {thumbnail: thumb})
 conn.send3ButtonImg(m.chat, msg, text.trim(), '© wabot \nA simple WhatsApp Bot', 'ping', '.ping', 'owner', '.owner', 'donasi', '.donate', reply)
  
   } catch (e) {
