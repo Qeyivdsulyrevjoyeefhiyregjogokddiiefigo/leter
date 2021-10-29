@@ -1,16 +1,15 @@
 //just trying, maap kalo eror
-//Reply gambar bang, jangan send gambar pake caption , nanti eror
 
 let handler = async m => {
 	let q = m.quoted ? m.quoted : m
 	let mime = (q.msg || q).mimetype || ''
 	if (/image/.test(mime)) {
-		let img = await q.download()
-		 await conn.downloadAndSaveMediaMessage({ message: m.message.extendedTextMessage.contextInfo.quotedMessage }, './src/thumb').then(() => m.reply('done'))
+		let img = m.quoted ? { message: { [m.quoted.mtype]: m.quoted }} : m
+		 await conn.downloadAndSaveMediaMessage(img, './src/thumb').then(() => m.reply('done'))
 	} else throw 'Reply imagenya'
 }
 
-handler.help = ['thumb'].map(v => 'set' + v)
+handler.help = ['thumb', 'thumbnail'].map(v => 'set' + v)
 handler.command = /^set(thumb|thumbnail)$/i
 handler.owner = true
 
