@@ -181,7 +181,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                           }
                         }
                       }
-let fs = require('fs')
+
 let rell = await conn.getProfilePicture('6283820073017@s.whatsapp.net')
 Rell_ = await (await fetch(rell)).buffer()
 const thumb = fs.readFileSync('./src/thumb.jpeg')
