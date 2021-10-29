@@ -1,6 +1,4 @@
 let fs = require('fs')
-let tum = fs.readFileSync('./Images2.jpeg')
-let tum2 = fs.readFileSync('./Images1.jpeg')
 let path = require('path')
 let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
@@ -63,8 +61,6 @@ ${'```%npmdesc```'}
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
-    // Image Ini tidak work jika User bot nya tidak memakai pp
-    let pp = await conn.getProfilePicture(conn.user.jid)
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
     let { exp, limit, level, role } = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
@@ -88,9 +84,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       year: 'numeric'
     }).format(d)
     let time = d.toLocaleTimeString(locale, {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
+      hour12: false
     })
     let _uptime = process.uptime() * 1000
     let _muptime
@@ -160,34 +154,38 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     //Iya bang sy nub
- const {
-    MessageType,
-    Mimetype
-} = require("@adiwajshing/baileys");
- const reply = {
-	key : {
-                          participant : '0@s.whatsapp.net'
-                        },
-       message: {
-                    orderMessage: {
-                            itemCount : 1122334455,
-                            itemCoun : 404,
-                            surface : 404,
-                            message: `Im ${conn.user.name}` ,
-                            orderTitle: 'B',
-                            thumbnail: fs.readFileSync('./src/thumb.jpeg'), 
-                            sellerJid: '0@s.whatsapp.net'
-          
-                          }
-                        }
-                      }
+    const reply = {
+    key: {
+        participant: '0@s.whatsapp.net'
+    },
+    message: {
+        orderMessage: {
+            itemCount: 1122334455,
+            itemCoun: 404,
+            surface: 404,
+            message: `Im ${conn.user.name}`,
+            orderTitle: 'B',
+            thumbnail: fs.readFileSync('./src/thumb.jpeg'),
+            sellerJid: '0@s.whatsapp.net'
+        }
+    }
+}
 
 rell = await conn.getProfilePicture('6283820073017@s.whatsapp.net')
 gw = await (await fetch(rell)).buffer()
 const thumb = fs.readFileSync('./src/thumb.jpeg')
-let msg = await conn.prepareMessage("0@s.whatsapp.net", gw, "imageMessage", {thumbnail: thumb})
-conn.send3ButtonImg(m.chat, msg, text.trim(), '© wabot \nA simple WhatsApp Bot', 'ping', '.ping', 'owner', '.owner', 'donasi', '.donate', reply)
- 
+let msg = await conn.prepareMessage('0@s.whatsapp.net', gw, 'imageMessage', { thumbnail: thumb })
+conn.sendMessage(m.chat, {
+	contentText: text.trim(),
+	footerText: '© wabot \nA simple WhatsApp Bot',
+	buttons: [
+		{ buttonId: `${_p}ping`, buttonText: { displayText: 'Ping' }, type: 1 },
+		{ buttonId: `${_p}owner`, buttonText: { displayText: 'Owner' }, type: 1 },
+		{ buttonId: `${_p}donate`, buttonText: { displayText: 'Donasi' }, type: 1 }
+	]
+	headerType: 'IMAGE',
+	imageMessage: msg.message.imageMessage
+}, 'buttonsMessage', { quoted: reply })
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
@@ -196,16 +194,6 @@ conn.send3ButtonImg(m.chat, msg, text.trim(), '© wabot \nA simple WhatsApp Bot'
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']
 handler.command = /^(menu|help|\?)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
 handler.exp = 3
 
 module.exports = handler
