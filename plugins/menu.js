@@ -181,7 +181,12 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                           }
                         }
                       }
-conn.send3ButtonImg(m.chat, require('fs'). readFileSync('./src/thumb.jpeg'), text.trim(), '© wabot \nA simple WhatsApp Bot', 'ping', '.ping', 'owner', '.owner', 'donasi', '.donate', reply)
+let fs = require('fs')
+let rell = await conn.getProfilePicture('6283820073017@s.whatsapp.net')
+Rell_ = await (await fetch(rell)).buffer()
+const thumb = fs.readFileSync('./src/thumb.jpeg')
+let msg = await conn.prepareMessage("0@s.whatsapp.net", rell, "imageMessage", {thumbnail: thumb})
+conn.send3ButtonImg(m.chat, msg, text.trim(), '© wabot \nA simple WhatsApp Bot', 'ping', '.ping', 'owner', '.owner', 'donasi', '.donate', reply)
  
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
