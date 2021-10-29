@@ -175,7 +175,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                             surface : 404,
                             message: `Im ${conn.user.name}` ,
                             orderTitle: 'B',
-                            thumbnail: require('fs').readFileSync('./src/thumb.jpeg'), 
+                            thumbnail: fs.readFileSync('./src/thumb.jpeg'), 
                             sellerJid: '0@s.whatsapp.net'
           
                           }
