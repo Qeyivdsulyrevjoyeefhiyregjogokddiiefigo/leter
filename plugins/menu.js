@@ -2,6 +2,7 @@ let fs = require('fs')
 let path = require('path')
 let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
+const thumb = fs.readFileSync('./src/thumb.jpeg')
 let tags = {
   'main': 'Main',
   'game': 'Game',
@@ -165,26 +166,24 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
             surface: 404,
             message: `Im ${conn.user.name}`,
             orderTitle: 'B',
-            thumbnail: fs.readFileSync('./src/thumb.jpeg'),
+            thumbnail: thumb,
             sellerJid: '0@s.whatsapp.net'
         }
     }
 }
 
-rell = await conn.getProfilePicture('6283820073017@s.whatsapp.net')
-gw = await (await fetch(rell)).buffer()
-const thumb = fs.readFileSync('./src/thumb.jpeg')
-let msg = await conn.prepareMessage('0@s.whatsapp.net', gw, 'imageMessage', { thumbnail: thumb })
+let msg = await conn.prepareMessage('0@s.whatsapp.net', thumb, 'documentMessage', { thumbnail: thumb, mimetype: 'application/pdf', filename: '©wabot' })
+
 conn.sendMessage(m.chat, {
 	contentText: text.trim(),
-	footerText: '© wabot \nA simple WhatsApp Bot',
+	footerText: 'A simple WhatsApp Bot',
 	buttons: [
 		{ buttonId: `${_p}ping`, buttonText: { displayText: 'Ping' }, type: 1 },
 		{ buttonId: `${_p}owner`, buttonText: { displayText: 'Owner' }, type: 1 },
 		{ buttonId: `${_p}donate`, buttonText: { displayText: 'Donasi' }, type: 1 }
 	]
-	headerType: 'IMAGE',
-	imageMessage: msg.message.imageMessage
+	headerType: 'DOCUMENT',
+	imageMessage: msg.message.documentMessage
 }, 'buttonsMessage', { quoted: reply })
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
@@ -194,7 +193,18 @@ conn.sendMessage(m.chat, {
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']
 handler.command = /^(menu|help|\?)$/i
+handler.owner = false
+handler.mods = false
+handler.premium = false
+handler.group = false
+handler.private = false
+
+handler.admin = false
+handler.botAdmin = false
+
+handler.fail = null
 handler.exp = 3
+
 
 module.exports = handler
 
