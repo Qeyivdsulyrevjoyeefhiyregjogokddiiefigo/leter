@@ -1,28 +1,19 @@
 let fetch = require('node-fetch')
+
 let handler = async (m, { conn, args }) => {
   if (!args[0]) throw 'Uhm...url nya mana?'
-  let res = await fetch(global.API('xteam', '/dl/ig', {
-    url: args[0]
-  }, 'APIKEY'))
-  if (res.status !== 200) {
-    res.text()
-    throw res.status
-  }
+  let res = await fetch(API('Velgrynd', '/api/igdl', { url: args[0] }))
+  if (!res.ok) throw await res.text()
   let json = await res.json()
-  if (!json.result) throw json
-  let { name, username, likes, caption, data } = json.result
-  let text = `
-Username: ${name} *(@${username})*
-${likes} Likes
-Caption:
-${caption}
-`.trim()
-  for (let { data: url, type } of data)
-    conn.sendFile(m.chat, url, 'ig' + (type == 'video' ? '.mp4' : '.jpg'), text, m)
+  let { user, medias } = json.result
+  for (let i = 0; i < medias.length; i++) {
+    let capt = i == 0 ? '*• User:* ' + user.username + '\n*• Followers:* ' + user.followers + '\n*• Media count:* ' + medias.length : ''
+    conn.sendFile(m.chat, medias[i].url, '', capt, m)
+  }
 }
 handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-
+handler.limit = true
 handler.command = /^(ig(dl)?)$/i
 
 module.exports = handler
