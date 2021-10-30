@@ -4,31 +4,31 @@ let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
 const thumb = fs.readFileSync('./src/thumb.jpeg')
 let tags = {
-  'main': 'Main',
-  'game': 'Game',
-  'xp': 'Exp & Limit',
-  'sticker': 'Sticker',
-  'kerang': 'Kerang Ajaib',
-  'quotes': 'Quotes',
-  'admin': 'Admin',
-  'group': 'Group',
-  'premium': 'Premium',
-  'internet': 'Internet',
-  'anonymous': 'Anonymous Chat',
-  'nulis': 'MagerNulis & Logo',
-  'downloader': 'Downloader',
-  'tools': 'Tools',
-  'fun': 'Fun',
-  'database': 'Database',
-  'vote': 'Voting',
-  'absen': 'Absen',
-  'quran': 'Al Qur\'an',
-  'jadibot': 'Jadi Bot',
-  'owner': 'Owner',
-  'host': 'Host',
-  'advanced': 'Advanced',
-  'info': 'Info',
-  '': 'No Category',
+  'main': '🄼🄰🄸🄽',
+  'game': '🄶🄰🄼🄴',
+  'xp': '🄴🅇🄿 & 🄻🄸🄼🄸🅃',
+  'sticker': '🅂🅃🄸🄲🄺🄴🅁',
+  'kerang': '🄺🄴🅁🄰🄽🄶 🄰🄹🄰🄸🄱',
+  'quotes': '🅀🅄🄾🅃🄴🅂',
+  'admin': '🄰🄳🄼🄸🄽',
+  'group': '🄶🅁🄾🅄🄿',
+  'premium': '🄿🅁🄴🄼🄸🅄🄼',
+  'internet': '🄸🄽🅃🄴🅁🄽🄴🅃',
+  'anonymous': '🄰🄽🄾🄽🅈🄼🄾🅄🅂 🄲🄷🄰🅃',
+  'nulis': '🄼🄰🄶🄴🅁 🄽🅄🄻🄸🅂 & 🄻🄾🄶🄾',
+  'downloader': '🄳🄾🅆🄽🄻🄾🄰🄳🄴🅁',
+  'tools': '🅃🄾🄾🄻🅂',
+  'fun': '🄵🅄🄽',
+  'database': '🄳🄰🅃🄰🄱🄰🅂🄴',
+  'vote': '🅅🄾🅃🄸🄽🄶',
+  'absen': '🄰🄱🅂🄴🄽',
+  'quran': '🄰🄻-🅀🅄🅁\'🄰🄽',
+  'jadibot': '🄹🄰🄳🄸 🄱🄾🅃',
+  'owner': '🄾🅆🄽🄴🅁',
+  'host': '🄷🄾🅂🅃',
+  'advanced': '🄰🄳🅅🄰🄽🄲🄴',
+  'info': '🄸🄽🄵🄾',
+  '': '🄽🄾 🄲🄰🅃🄴🄶🄾🅁🅈',
 }
 const defaultMenu = {
   before: `
@@ -52,9 +52,9 @@ const defaultMenu = {
 │ https://instagram.com/loli._.school
 ╰────
 %readmore`.trimStart(),
-  header: '╭─「 %category 」',
-  body: '│ • %cmd %islimit %isPremium',
-  footer: '╰━━━━━\n',
+  header: '┏┉┄┈┈┈『%category』┈┈┈┈┈┉┓',
+  body: '┆➜ %cmd %islimit %isPremium',
+  footer: '└┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n',
   after: `
 *%npmname@^%version*
 ${'```%npmdesc```'}
@@ -164,27 +164,15 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
             itemCount: 1122334455,
             itemCoun: 404,
             surface: 404,
-            message: `Im ${conn.user.name}`,
+            message: `© ${conn.user.name}`,
             orderTitle: 'B',
             thumbnail: thumb,
             sellerJid: '0@s.whatsapp.net'
         }
     }
 }
-
-let msg = await conn.prepareMessage('0@s.whatsapp.net', thumb, 'documentMessage', { thumbnail: thumb, mimetype: 'application/pdf', filename: '©wabot' })
-
-conn.sendMessage(m.chat, {
-	contentText: text.trim(),
-	footerText: 'A simple WhatsApp Bot',
-	buttons: [
-		{ buttonId: `${_p}ping`, buttonText: { displayText: 'Ping' }, type: 1 },
-		{ buttonId: `${_p}owner`, buttonText: { displayText: 'Owner' }, type: 1 },
-		{ buttonId: `${_p}donate`, buttonText: { displayText: 'Donasi' }, type: 1 }
-	]
-	headerType: 'DOCUMENT',
-	imageMessage: msg.message.documentMessage
-}, 'buttonsMessage', { quoted: reply })
+let fkon = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `Relldev`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN: Rlxfly UwU\nitem1.TEL;waid=6283820073017:6283820073017\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+conn.send3ButtonImg(m.chat, thumb, `Hi! Im ${conn.get.name}\n\nHere my menu...`, text.trim(), 'ping', '.ping', 'owner', '-owner', 'donasi', '.donasi', reply)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
