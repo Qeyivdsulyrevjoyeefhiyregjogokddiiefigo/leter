@@ -1,13 +1,11 @@
-let fetch = require('node-fetch')
+let zsExtract = require('zs-extract')
 
 let handler = async (m, { conn, args }) => {
  if (!args[0]) throw 'Uhm...url nya mana?'
- let res = await fetch(API('Velgrynd', '/api/zippyshare', { url: args[0] }))
- if (!res.ok) throw await res.text()
- let json = await res.json()
- let { nama, link } = json.result.hasil
- m.reply(JSON.stringify(json.result.hasil, null, 2))
- conn.sendFile(m.chat, link, nama, '', m)
+ let res = await zsExtract.extract(args[0])
+ let { download, filename } = res
+ m.reply(JSON.stringify(res, null, 2))
+ conn.sendFile(m.chat, download, filename, filename, m)
 }
 handler.help = ['ippydl', 'ippyshare'].map(v => 'z' + v + ' <url>')
 handler.tags = ['downloader']
