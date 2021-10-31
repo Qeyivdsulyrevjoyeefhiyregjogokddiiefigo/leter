@@ -1,6 +1,6 @@
 let handler = async (m, { conn }) => {
-  let txt = conn.chats.all().filter(v => v.jid.endsWith('g.us')).map(v =>`${conn.getName(v.jid)}\n${v.jid} [${v.read_only ? 'Left' : 'Joined'}]`).join`\n\n`
-  conn.reply(m.chat, 'List Groups:\n' + txt, m)
+  let txt = conn.chats.all().filter(v => v.jid.endsWith('g.us')).map(v =>`${v.name}\n${v.jid} [${v.read_only ? 'Left' : 'Joined'}]`).join`\n\n`
+  m.reply('List Groups:\n' + txt)
 }
 handler.help = ['groups', 'grouplist']
 handler.tags = ['info']
