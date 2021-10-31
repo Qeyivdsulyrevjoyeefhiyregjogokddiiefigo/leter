@@ -9,12 +9,12 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.siapakahaku[id][0])
         throw false
     }
-    let res = await fetch(global.API('Dehan', '/fun/siapakahaku', {}, 'APIKEY'))
+    let res = await fetch(global.API('xteam', '/game/siapakahaku', {}, 'APIKEY'))
     if (res.status !== 200) throw await res.text()
     let json = await res.json()
     if (!json.status) throw json
     let caption = `
-Siapakah aku? ${json.result.pertanyaan}
+Siapakah aku? ${json.result.soal}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}who untuk bantuan
