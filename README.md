@@ -24,7 +24,13 @@ npm i acrcloud
 npm i sagiri
 npm update
 ```
-
+#If You Can't
+```bash
+apt update && apt upgrade
+apt install git -y
+git clone https://github.com/LitRHap/wabot
+bash install.sh
+```
 ---------
 
 ## FOR WINDOWS/VPS/RDP USER
