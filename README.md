@@ -8,11 +8,11 @@ Simple WhatsApp Bot
 ## FOR TERMUX/UBUNTU/SSH USER
 
 ```bash
-apt update && apt upgrade
-apt install git -y
-apt install nodejs -y
-apt install ffmpeg -y
-apt install imagemagick -y
+npm update && apt upgrade
+npm install git -y
+npm install nodejs -y
+npm install ffmpeg -y
+npm install imagemagick -y
 git clone https://github.com/LitRHap/wabot
 cd wabot-aq
 npm install
