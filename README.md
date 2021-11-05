@@ -14,17 +14,12 @@ apt install nodejs -y
 apt install ffmpeg -y
 apt install imagemagick -y
 git clone https://github.com/LitRHap/wabot
-cd wabot-aq
+cd wabot
+bash install.sh
 npm install
-npm i hmtai
-npm i booru
-npm i image-to-pdf
-npm i nhentai-node-api
-npm i acrcloud
-npm i sagiri
 npm update
 ```
-#If You Can't
+# If You Can't
 ```bash
 apt update && apt upgrade
 apt install git -y
