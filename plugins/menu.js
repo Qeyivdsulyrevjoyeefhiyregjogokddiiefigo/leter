@@ -47,17 +47,15 @@ const defaultMenu = {
 │ Uptime: *%uptime (%muptime)*
 │ Database: %rtotalreg of %totalreg
 │ Github :
-│ https://github.com/LitRHap/wabot
+│ 
 │ Instagram :
-│ https://instagram.com/loli._.school
+│ 
 ╰────
 %readmore`.trimStart(),
   header: '┏┉┄┈┈┈『%category』┈┈┈┈┈┉┓',
-  body: '┆➜ %cmd %islimit %isPremium',
+  body: '┆々 %cmd %islimit %isPremium',
   footer: '└┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n',
   after: `
-*%npmname@^%version*
-${'```%npmdesc```'}
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
