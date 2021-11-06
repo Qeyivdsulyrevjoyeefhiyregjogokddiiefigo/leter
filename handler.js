@@ -45,7 +45,7 @@ module.exports = {
           if (!('autolevelup' in user)) user.autolevelup = false
         } else global.db.data.users[m.sender] = {
           exp: 0,
-          limit: 10,
+          limit: 15,
           lastclaim: 0,
           registered: false,
           name: this.getName(m.sender),
@@ -73,14 +73,14 @@ module.exports = {
           if (!('antiLink' in chat)) chat.antiLink = false
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
-          welcome: false,
-          detect: false,
+          welcome: true,
+          detect: true,
           sWelcome: '',
           sBye: '',
           sPromote: '',
           sDemote: '',
           delete: true,
-          antiLink: false,
+          antiLink: true,
         }
       } catch (e) {
         console.error(e)
