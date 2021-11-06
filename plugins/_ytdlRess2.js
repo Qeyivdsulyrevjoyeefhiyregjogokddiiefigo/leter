@@ -15,13 +15,13 @@ let handler = async (m, { conn, args, isPrems, isOwner }) => {
 let _thumb = {}
   try { _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
   catch (e) { }
-  conn.sendMessage(m.chat, `*Title:* ${title}\n*Size:* ${filesizeF}\n\n_Sending..._` , 'conversation', {quoted: m, thumbnail: global.thumb2, contextInfo:{externalAdReply: {title: 'Simple WhatsApp bot', body: `© ${conn.user.name}`, sourceUrl: '', thumbnail: global.thumb3}}})
+  conn.sendMessage(m.chat, `*Title:* ${title}\n*Size:* ${filesizeF}\n\n_Sending..._` , 'conversation', {quoted: m, thumbnail: thumb, contextInfo:{externalAdReply: {title: 'Simple WhatsApp bot', body: `© ${conn.user.name}`, sourceUrl: '', thumbnail: thumb}}})
   if (!isLimit) conn.sendFile(m.chat, dl_link, title + '.mp4', `
  ${title}
  © ${conn.user.name}
 `.trim(), m, false, {
   
-ptt: false, duration: 999999999999, thumbnail: global.thumb })
+ptt: false, duration: 999999999999, thumbnail:thumb })
 }
 handler.command = /^dlvid$/i
 handler.owner = false
