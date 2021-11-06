@@ -10,7 +10,7 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, text }) => {
   let { dl_link, thumb, title, filesize, filesizeF} = await yt(args[0], quality + 'p', 'mp4', quality, servers.includes(server) ? server : servers[0])
   
   let isLimit = (isPrems || isOwner ? 99 : limit) * 998888 < filesize
-await conn.relayWAMessage(itsu.prepareMessageFromContent(m.chat, {
+await conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
                     "listMessage":  {
                         "title": `*Title*: ${title}`,
                         "description": " \n Simple WhatsApp Bot ",
