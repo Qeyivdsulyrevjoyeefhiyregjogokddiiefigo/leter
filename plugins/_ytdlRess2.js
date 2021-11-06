@@ -8,7 +8,8 @@ let handler = async (m, { conn, args, isPrems, isOwner }) => {
   let quality = args[1] || '360'
   let server = (args[2] || servers[0]).toLowerCase()
   let { dl_link, thumb, title, filesize, filesizeF} = await yt(args[0], quality + 'p', 'mp4', quality, servers.includes(server) ? server : servers[0])
-  let thumb = require('fs').readFileSync('./src/thumb.jpeg')
+ let fs = require('fs')
+ let thumb = fs.readFileSync('./src/thumb.jpeg')
   let isLimit = (isPrems || isOwner ? 99 : limit) * 99888898 < filesize
 let _thumb = {}
   try { _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
